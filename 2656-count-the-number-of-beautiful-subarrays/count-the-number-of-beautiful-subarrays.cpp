@@ -4,7 +4,7 @@ public:
         long long k=0;
         long long xr=0;
         map< long long,long long>mpp;
-        mpp[xr]++;
+        mpp[0]=1;
         long long cnt=0;
         for(int i=0;i<nums.size();i++){
             xr=xr^nums[i];
