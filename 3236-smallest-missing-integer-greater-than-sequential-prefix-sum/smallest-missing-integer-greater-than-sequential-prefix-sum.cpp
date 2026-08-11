@@ -1,20 +1,30 @@
 class Solution {
 public:
-    int missingInteger(std::vector<int>& nums) {
+    int missingInteger(vector<int>& nums) {
         int n = nums.size();
-        unordered_set<int> num_set(nums.begin(), nums.end());
-        int prefix_len = 1;
+
+        int presum = nums[0];
+
+        // Finding longest prefix sequential sum
         for (int i = 1; i < n; i++) {
-            if (nums[i] == nums[i - 1] + 1) {
-                prefix_len += 1;
-            } else {
+            if (nums[i] == nums[i - 1] + 1)
+                presum += nums[i];
+            else
                 break;
-            }
         }
-        int total = (nums[prefix_len - 1] + nums[0]) * prefix_len / 2;
-        while (num_set.count(total)) {
-            total += 1;
+
+        vector<bool> hashTable(1276, false);
+
+        // Filling hash table
+        for (int i = 0; i < n; i++) {
+            hashTable[nums[i]] = true;
         }
-        return total;
+
+        // Finding the missing integer
+        while (hashTable[presum]) {
+            presum++;
+        }
+
+        return presum;
     }
 };
