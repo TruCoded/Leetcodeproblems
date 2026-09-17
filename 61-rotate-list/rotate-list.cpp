@@ -8,7 +8,7 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution{
+class Solution {
 public:
     ListNode* findNthNode(ListNode* temp,int k){
         int cnt=1;
