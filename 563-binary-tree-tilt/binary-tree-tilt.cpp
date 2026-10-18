@@ -11,12 +11,15 @@
  */
 class Solution {
 public:
+int tilt=0;
 int sum(TreeNode* root) {
     if (root == nullptr) return 0;
-    return root->val + sum(root->left) + sum(root->right);
-}
+    int left=sum(root->left);
+    int right=sum(root->right);
+    tilt=tilt+abs(left-right);
+    return root->val+right+left;
+    }
     int findTilt(TreeNode* root) {
-        if (root == nullptr) return 0;
-        return abs(sum(root->left) - sum(root->right)) + findTilt(root->left)
-           + findTilt(root->right);}
+        sum(root);
+        return tilt;}
 };
